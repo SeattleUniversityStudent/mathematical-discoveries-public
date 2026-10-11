@@ -14,6 +14,7 @@ No result here has been reviewed or endorsed by a human expert, and no proof ass
 | Result | Proof status | Result status | AI reviews |
 | --- | --- | --- | --- |
 | [A failure of log-concavity for Carlitz composition lengths](results/carlitz-log-concavity/) | unreviewed draft | new claim not cleared | 2 (two vendors), both passed |
+| [Wythoff Nim with one pass: bounded displacement of P-positions](results/wythoff-pass-displacement/) | unreviewed draft | known result | 1, passed |
 
 ## Rights
 

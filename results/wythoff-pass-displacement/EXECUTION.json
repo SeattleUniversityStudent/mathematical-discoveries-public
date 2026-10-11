@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-11",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "platform": "x86-64 Linux",
+  "producer_runs": "none (RERUN.json lists no runs)",
+  "reruns": [
+    {
+      "commands": [
+        "python3 review/reviewer-1/rev-a-rq5-a_check.py 20000000 5000 150"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "review/reviewer-1/rev-a-rq5-a_check_output.txt"
+      ],
+      "identical_ignoring_elapsed_time": true
+    },
+    {
+      "commands": [
+        "python3 review/reviewer-1/rev-a-rq5-a_check2.py 1000000 60"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "review/reviewer-1/rev-a-rq5-a_check2_output.txt"
+      ],
+      "identical_ignoring_elapsed_time": true
+    }
+  ],
+  "all_completed_reruns_matched": true
+}

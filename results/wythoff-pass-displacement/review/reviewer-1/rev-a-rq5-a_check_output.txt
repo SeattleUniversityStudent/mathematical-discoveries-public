@@ -1,0 +1,66 @@
+REV-A-RQ5-a check: Wythoff Nim with one shared pass
+parameters: M=20000000 (rows 0..M exact, all b), N2=5000 (square scan), N3=150 (literal)
+python 3.13.16 numpy 2.5.3
+
+Exactness of floor(phi*n): s = isqrt(5n^2) satisfies s < n*sqrt5 < s+1 for n>0 (sqrt5 irrational),
+  so (n+s)/2 < phi*n < (n+s+1)/2, an open interval of length 1/2 containing no integer in its
+  interior other than possibly (n+s+1)/2 itself (excluded) -> floor(phi n) = (n+s)//2.
+Exactness of the computed region: every move strictly decreases a+b or removes the pass, so the
+  status of (a,b,f) depends only on states with smaller coordinates; rows 0..M are computed in full
+  (no truncation in b), hence every P1 position with min(a,b) <= M is found exactly, which includes
+  every P1 position in the square [0..M]^2.  No floating point enters any decision.
+
+[9.3s] ordinary Wythoff table built for x <= L=60000040 (Beatty complementarity verified)
+[14.7s] row greedy, no pass, rows 0..20000000 done
+  check: no-pass greedy == formula pairs (floor(phi n), floor(phi n)+n) and mirrors, rows 0..M: OK
+[21.7s] row greedy, pass unused, rows 0..20000000 done
+  checks: symmetry, one P per column/diagonal, b <= 3a+1: OK;  P1 ∩ P0 within rows 0..M = [(0, 0)]
+[47.7s] O(N^2) square scan on [0..5000]^2 (no symmetry assumed) == row greedy, both games: OK
+[48.4s] literal move-by-move on [0..150]^2 x {pass, no pass} == scan == greedy == formula: OK (115 P1 cells)
+
+first P1 positions (pass unused, a<=b): [(0, 0), (1, 3), (2, 5), (4, 8), (6, 7), (9, 14), (10, 16), (11, 19), (12, 21), (13, 20), (15, 25), (17, 29), (18, 31), (22, 33), (23, 37), (24, 40), (26, 41), (27, 45), (28, 47), (30, 50), (32, 49), (34, 55), (35, 58), (36, 60), (38, 63), (39, 61), (42, 69), (43, 71), (44, 70), (46, 76)]
+
+MAIN STATEMENT  |a - floor(phi d)| <= 17,  d = b-a,  over P1 positions with a <= b:
+  positions checked: 12360681 with a <= b and a <= M (of which 7639321 lie in the square b <= M)
+  signed a - floor(phi d): min -3, max 8;  max |.| = 8
+  attained at 77950 positions; first ones: [(93, 146, 53, 8), (394, 633, 239, 8), (530, 853, 323, 8), (559, 900, 341, 8), (792, 1277, 485, 8), (1669, 2696, 1027, 8), (1936, 3128, 1192, 8), (2368, 3827, 1459, 8), (2504, 4047, 1543, 8), (2533, 4094, 1561, 8), (2580, 4170, 1590, 8), (2855, 4615, 1760, 8)] (a,b,d,a-floor(phi d))
+  max |.| inside the square [0..M]^2: 8
+  violations of the bound 17: 0 []
+  histogram of a - floor(phi d): {-3: 369642, -2: 5140216, -1: 1782519, 0: 1, 1: 1813326, 2: 1459311, 3: 191522, 4: 637138, 5: 765090, 7: 123966, 8: 77950}
+  max |a - floor(phi d)| by block of a:
+    a in [0,10): 6 positions, max 5 at (6,7)
+    a in [10,100): 56 positions, max 8 at (93,146)
+    a in [100,1000): 556 positions, max 8 at (394,633)
+    a in [1000,10000): 5563 positions, max 8 at (1669,2696)
+    a in [10000,100000): 55623 positions, max 8 at (10031,16226)
+    a in [100000,1000000): 556230 positions, max 8 at (100183,162095)
+    a in [1000000,10000000): 5562307 positions, max 8 at (1000072,1618146)
+    a in [10000000,100000000): 6180340 positions, max 8 at (10000611,16181324)
+  mirror images: for a P1 position (a,b) with a > b the statement is applied to (b,a), which is
+    itself a P1 position (symmetry verified above), so the a <= b list above covers them.
+  edge cases: (0,0) is P1 (no move: the pass is not allowed at (0,0)); d=0, value 0.
+    Row a=0 contains no other P1 position ((0,b,1)->(0,0,1)).  Diagonal a=b>0 contains none.
+
+W1  every P1 position is within squared Euclidean distance 20 of some P0 position:
+  positions checked: all 20000001 rows a = 0..M (both orientations; P1 position (a, p1[a]))
+  max squared distance to nearest P0 point: 9, attained 126323 times; first: [(93, 146), (146, 93), (394, 633), (530, 853), (559, 900), (633, 394), (792, 1277), (853, 530), (900, 559), (1277, 792), (1669, 2696), (1936, 3128)]
+  max inside the square [0..M]^2: 9
+  histogram of squared distance: {0: 1, 1: 14280758, 2: 4394090, 4: 998198, 5: 200631, 9: 126323}
+  violations of W1 (d^2 > 20): 0 []
+  max squared distance by block of a:
+    a in [0,10): max 4 at (6,7)
+    a in [10,100): max 9 at (93,146)
+    a in [100,1000): max 9 at (146,93)
+    a in [1000,10000): max 9 at (1277,792)
+    a in [10000,100000): max 9 at (10031,16226)
+    a in [100000,1000000): max 9 at (100183,162095)
+    a in [1000000,10000000): max 9 at (1000072,1618146)
+    a in [10000000,100000000): max 9 at (10000274,6180512)
+
+AUXILIARY (W1 => main?): if every P1 point is within d^2<=20 of a P0 point, then
+  near (A_n, A_n+n): |a - floor(phi d)| <= 14 (worst offset (-4, 2), exact integer case analysis)
+  near a mirror (A_n+n, A_n) with a<=b (forces n<=6): <= 13 (worst (a,b,n)=(13, 13, 6))
+  so W1 would give the main statement with constant 14 <= 17.
+
+[56.3s] done; peak RSS 3932 MB
+SUMMARY REV-A-RQ5-a: rows 0..20000000 exact (all P1 with min(a,b)<=20000000; square [0..20000000]^2 included); cross-checks scan[0..5000]^2 + literal[0..150]^2 OK; main: max|a-floor(phi d)|=8 at (a,b)=(93,146) -> bound 17 HOLDS in range; W1: max d^2=9 at (93,146) -> bound 20 HOLDS in range

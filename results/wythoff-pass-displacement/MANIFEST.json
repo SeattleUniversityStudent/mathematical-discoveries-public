@@ -1,0 +1,61 @@
+{
+  "contribution": "GAM-WYP-001",
+  "revision": "r1",
+  "files": [
+    {
+      "path": "EXECUTION.json",
+      "bytes": 749,
+      "sha256": "1ff54928632bb5b73bd5e976830850edb2b2b42988ca4601df795a89721064ce"
+    },
+    {
+      "path": "PROOF.md",
+      "bytes": 1145,
+      "sha256": "f7714b42c1e0379ab30cc2aa2eb011fefe9564c61ba02d9135ce48b70ba66217"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3406,
+      "sha256": "e41de3ab56a70b9b1fd3ddb9748280429ae2e68fe37d7a1fcd8e7fdc0dddaf6f"
+    },
+    {
+      "path": "RERUN.json",
+      "bytes": 133,
+      "sha256": "46f9f55e0b5d36def5f91caf6ec85b71bf1352903c37e697696e092d404ae3e2"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 1820,
+      "sha256": "ef762eeb12efac299eebc0d92bcb6e4657a3896e1411c50719a0d8663b16cde1"
+    },
+    {
+      "path": "RIGHTS.md",
+      "bytes": 281,
+      "sha256": "0302e5a41239cfdefc3ac7de057bd7e50e48214c0c8c95a9f2cc31c84231fc21"
+    },
+    {
+      "path": "review/reviewer-1/rev-a-rq5-a_check.py",
+      "bytes": 17165,
+      "sha256": "58e1b9d8b276b8e095aa43e84773e09ac6b4e2ab0f84245d3bab3e0fe90a2721"
+    },
+    {
+      "path": "review/reviewer-1/rev-a-rq5-a_check2.py",
+      "bytes": 4942,
+      "sha256": "faff8dfdacc88c339a76e1f005aa24c825f1d2a4f8c1236ea768289134a48842"
+    },
+    {
+      "path": "review/reviewer-1/rev-a-rq5-a_check2_output.txt",
+      "bytes": 722,
+      "sha256": "a7b511af20ef7ed8b31d77ce5318ee96b9b776ec2efee680e9778991b90d2a37"
+    },
+    {
+      "path": "review/reviewer-1/rev-a-rq5-a_check_output.txt",
+      "bytes": 5088,
+      "sha256": "91a76a6442a577859cbe382af9bce346e7dc90a64fcab4d5f59e887c488a95c6"
+    },
+    {
+      "path": "review/reviewer-1/verdict.md",
+      "bytes": 7499,
+      "sha256": "c0d6f28a0facbbf5373aba22b9d0d7fef97dc23834cd3162e0e6cb4929ab059c"
+    }
+  ]
+}
