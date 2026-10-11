@@ -4,6 +4,7 @@ Contribution PRT-CAR-001, revision r1, released 2026-10-11.
 
 **Proof status:** unreviewed draft.
 **Result status:** new claim not cleared.
+**Formal verification:** none. No Lean or other proof-assistant check has been run on this result. Formal verification is pending; this is an AI-reviewed draft, not part of a formally verified collection.
 
 This work is AI-assisted: AI systems produced the argument, the programs and the runs described below. Two AI reviewers, from two different vendors, checked it (see REVIEW.md). No human has reviewed or endorsed it. No proof assistant was used. No claim of priority is made.
 
@@ -63,4 +64,5 @@ No licence is granted. See RIGHTS.md.
 
 ## Revision history
 
-r1: first public release.
+- r1: first public release.
+- r1, documentation update of 2026-10-11: the formal-verification status above was added. Only README.md and MANIFEST.json changed; the mathematics, programs, logs and reviews are unchanged.

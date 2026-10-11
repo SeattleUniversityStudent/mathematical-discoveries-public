@@ -4,6 +4,7 @@ Contribution GAM-WYP-001, revision r1, released 2026-10-11.
 
 **Proof status:** unreviewed draft.
 **Result status:** known result.
+**Formal verification:** none. No Lean or other proof-assistant check has been run on this result. Formal verification is pending; this is an AI-reviewed draft, not part of a formally verified collection.
 
 This work is AI-assisted: AI systems produced the note and the check programs described below. One AI reviewer checked it (see REVIEW.md). No human has reviewed or endorsed it. No proof assistant was used. No new result is claimed: the statement is a short corollary of a published theorem.
 
@@ -55,4 +56,5 @@ No licence is granted. See RIGHTS.md.
 
 ## Revision history
 
-r1: first public release.
+- r1: first public release.
+- r1, documentation update of 2026-10-11: the formal-verification status above was added. Only README.md and MANIFEST.json changed; the mathematics, programs, logs and reviews are unchanged.
