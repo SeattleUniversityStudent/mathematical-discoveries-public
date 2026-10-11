@@ -1,0 +1,14 @@
+{
+  "n": 314,
+  "counts": {
+    "207": "10094513",
+    "208": "32552",
+    "209": "105"
+  },
+  "middle_square": "1059632704",
+  "neighbor_product": "1059923865",
+  "difference": "-291161",
+  "method": "last-part recurrence, exact arbitrary-precision integers",
+  "global_minimality": "NOT CHECKED",
+  "elapsed_seconds": 0.7935871789959492
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "polynomial_state_residuals": 35,
+  "even_and_odd_projection_identities": 10,
+  "transition_entries_compared": 245,
+  "closed_form_polynomial_identities": "PASS",
+  "positive_integer_shift_certificate": [
+    6987864,
+    120548802,
+    4598485,
+    65837,
+    419,
+    1
+  ],
+  "nonfailure_m_1_through_103_in_this_family": "PASS",
+  "independent_last_part_counts": "MATCH",
+  "global_minimality": "NOT CHECKED"
+}

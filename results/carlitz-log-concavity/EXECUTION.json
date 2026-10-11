@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-11",
+  "python": "3.13.16",
+  "platform": "x86-64 Linux",
+  "dependencies": "Python standard library only",
+  "reruns": [
+    {
+      "commands": [
+        "timeout 120s python3 algebra.py > algebra.log 2>&1"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "algebra.log",
+        "algebra.json"
+      ],
+      "identical": true
+    },
+    {
+      "commands": [
+        "timeout 120s python3 verify_counterexample.py > counterexample.log 2>&1"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "counterexample.log",
+        "counterexample.json"
+      ],
+      "identical": false,
+      "identical_except": "elapsed_seconds field (runtime measurement)"
+    },
+    {
+      "commands": [
+        "timeout 120s python3 certify.py > certificate.log 2>&1"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "certificate.log",
+        "certificate_verification.json"
+      ],
+      "identical": true
+    },
+    {
+      "commands": [
+        "python3 review/reviewer-1/check_RQ4.py"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "review/reviewer-1/check_RQ4_output.txt"
+      ],
+      "identical": true
+    },
+    {
+      "commands": [
+        "python3 review/reviewer-1/check_RQ4_step2.py"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "review/reviewer-1/check_RQ4_step2_output.txt"
+      ],
+      "identical": true
+    },
+    {
+      "commands": [
+        "python3 review/reviewer-2/REV-B-RQ4-b_independent_stage1.py > out.json"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "review/reviewer-2/REV-B-RQ4-b_independent_output.json"
+      ],
+      "identical": false,
+      "identical_except": "timing fields (runtime measurements)"
+    }
+  ],
+  "all_completed_reruns_matched": true,
+  "note": "All numerical outputs matched exactly; only runtime measurements differed."
+}
