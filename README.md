@@ -15,6 +15,7 @@ No result here has been reviewed or endorsed by a human expert, and no proof ass
 | --- | --- | --- | --- |
 | [A failure of log-concavity for Carlitz composition lengths](results/carlitz-log-concavity/) | unreviewed draft | new claim not cleared | 2 (two vendors), both passed |
 | [Wythoff Nim with one pass: bounded displacement of P-positions](results/wythoff-pass-displacement/) | unreviewed draft | known result | 1, passed |
+| [A cofactor bound from the S-matrix theorem](results/s-matrix-cofactor-bound/) | unreviewed draft | reconstruction | 1 review plus recheck of the revision, passed |
 
 ## Rights
 

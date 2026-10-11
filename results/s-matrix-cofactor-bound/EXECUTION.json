@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-11",
+  "python": "3.13.16",
+  "numpy": "2.5.3",
+  "platform": "x86-64 Linux",
+  "producer_runs": "none (RERUN.json lists no runs)",
+  "reruns": [
+    {
+      "commands": [
+        "python3 review/review-r1/check_RQ1.py"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "review/review-r1/check_RQ1_output.txt"
+      ],
+      "identical_ignoring_elapsed_time": true
+    },
+    {
+      "commands": [
+        "python3 review/recheck-r2/rev-a-rq1-a_check.py"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "review/recheck-r2/rev-a-rq1-a_check_output.txt"
+      ],
+      "identical_ignoring_elapsed_time": false,
+      "note": "Exhaustive sections identical. Time-bounded search sections (marked complete=False in the output) explored slightly different node and leaf counts; every summary, violation and failure line is identical (0 counterexamples, 0 anomalies, L2 failures 0)."
+    }
+  ],
+  "all_completed_reruns_matched": true,
+  "match_definition": "all mathematical conclusions identical; only runtime and time-bounded search sizes differ"
+}

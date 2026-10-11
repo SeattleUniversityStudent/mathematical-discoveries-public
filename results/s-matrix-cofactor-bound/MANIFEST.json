@@ -1,0 +1,61 @@
+{
+  "contribution": "MAT-SCF-001",
+  "revision": "r2",
+  "files": [
+    {
+      "path": "EXECUTION.json",
+      "bytes": 1085,
+      "sha256": "1b4a8bc8d315dda9d542d3d1b6dafd7f15f3313955079a1864ec0b79e6c0d39d"
+    },
+    {
+      "path": "PROOF.md",
+      "bytes": 2368,
+      "sha256": "99e1d6558099efd0423df9f76d7fb307afd77e15a5494c735200d7e326e65700"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4207,
+      "sha256": "41a6ed99f6204c036b5030170b0514af1a957b73d4c3597400faa883c98b53a5"
+    },
+    {
+      "path": "RERUN.json",
+      "bytes": 353,
+      "sha256": "b3c94171a571e0c9bd4c800dd198bee2814f1e6dc565f55b31181d6c2272c29c"
+    },
+    {
+      "path": "REVIEW.md",
+      "bytes": 3349,
+      "sha256": "f320073538014086379ff95dec36093a2b3910d54f314afb334d3b7153aa6f0a"
+    },
+    {
+      "path": "RIGHTS.md",
+      "bytes": 281,
+      "sha256": "0302e5a41239cfdefc3ac7de057bd7e50e48214c0c8c95a9f2cc31c84231fc21"
+    },
+    {
+      "path": "review/recheck-r2/rev-a-rq1-a_check.py",
+      "bytes": 51321,
+      "sha256": "6a80ede52dd0075047a4cd015c56a75a32093c08cfe7532675f6b3dc9eaddb0c"
+    },
+    {
+      "path": "review/recheck-r2/rev-a-rq1-a_check_output.txt",
+      "bytes": 23085,
+      "sha256": "c1c6527f0b698ae1fae9ac70c6c125cfe1823fce9bc0582786334894414f7e47"
+    },
+    {
+      "path": "review/recheck-r2/verdict-r2-recheck.md",
+      "bytes": 7059,
+      "sha256": "93732d2fee7dac1d8841f4247e07fe7098ad2d8402e88bcf9088f12ee27540d6"
+    },
+    {
+      "path": "review/review-r1/check_RQ1.py",
+      "bytes": 8347,
+      "sha256": "43c817b245d91bf92409997095bf600638726d5978a6eb3deaba6e67e520b1aa"
+    },
+    {
+      "path": "review/review-r1/check_RQ1_output.txt",
+      "bytes": 1961,
+      "sha256": "eb73c35bb0da0cc0861d871ebdd2e70aa6219953efcabf33359f91c49d7c6fd9"
+    }
+  ]
+}

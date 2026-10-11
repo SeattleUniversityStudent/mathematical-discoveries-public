@@ -1,0 +1,180 @@
+==============================================================================
+REV-A-RQ1-a check program; python 3.13.16 numpy 2.5.3
+SECTION 1  n = 1 edge case
+  A=[[0]] singular (excluded by hypothesis)
+  A=[[1]]: D=1 c=1 bound 2D/(n+1)=1  equality=True  is_S=True  L2: 2(2*S^T-J)/(n+1)=1, S^-1=1
+  L1 n=1: 1000 exact values a=k/1000: Q=1/a^2 >=1 always, equality only a=1 -> anomalies: 0
+SECTION 2  exhaustive over ALL 2^(n^2) binary matrices, n=2,3,4, c(A) from literal minors 0.0s
+  n=2: 16 matrices, nonsingular=6  {'viol': 0, 'eq': 0, 'eq_nonS': 0, 'S': 0, 'S_noneq': 0, 'violQ': 0, 'eqQ': 0, 'eqQ_nonS': 0}
+     min R=3/2 at [01,10] ; min R non-S=3/2 at [01,10] ; min Q=9/8 at [01,10] ; identity mismatches=0
+  n=3: 512 matrices, nonsingular=174  {'viol': 0, 'eq': 6, 'eq_nonS': 0, 'S': 6, 'S_noneq': 0, 'violQ': 0, 'eqQ': 6, 'eqQ_nonS': 0}
+     min R=1 at [011,101,110] ; min R non-S=2 at [001,010,100] ; min Q=1 at [011,101,110] ; identity mismatches=0
+  n=4: 65536 matrices, nonsingular=22560  {'viol': 0, 'eq': 0, 'eq_nonS': 0, 'S': 0, 'S_noneq': 0, 'violQ': 0, 'eqQ': 0, 'eqQ_nonS': 0}
+     min R=5/4 at [1111,1001,1010,1100] ; min R non-S=5/4 at [1111,1001,1010,1100] ; min Q=625/576 at [0111,1001,1010,1100] ; identity mismatches=0
+  (nonsingular counts for comparison with OEIS A046747 as recalled, not looked up: 6, 174, 22560)
+SECTION 3  exhaustive up to row/column permutation, exact int64 det DP + certified adjugates 1.6s
+  self-test batch_det vs Bareiss (2100 matrices) and adj_det vs Fraction inverse (120): mismatches=0
+  n=3: all 35 sets of n distinct nonzero rows (complete up to row order); nonsingular sets=29 -> x n! = 174
+  [rowsets] n=3 nonsingular processed=29
+     MAIN: violations=0 equality=1 (non-S among them=0) S-matrices=1 (S without equality=0)
+     MAIN: min R=1 (1.000000) at [011,101,110] ; min R over non-S=2 (2.000000) at [001,010,100]
+     L1(binary): violations=0 equality=1 (non-S=0) min Q=1 (1.000000) at [011,101,110] ; min Q non-S=1.333333
+  n=4: all 1365 sets of n distinct nonzero rows (complete up to row order); nonsingular sets=940 -> x n! = 22560
+  [rowsets] n=4 nonsingular processed=940
+     MAIN: violations=0 equality=0 (non-S among them=0) S-matrices=0 (S without equality=0)
+     MAIN: min R=5/4 (1.250000) at [0011,0101,1001,1111] ; min R over non-S=5/4 (1.250000) at [0011,0101,1001,1111]
+     L1(binary): violations=0 equality=0 (non-S=0) min Q=625/576 (1.085069) at [0011,0101,1001,1110] ; min Q non-S=1.085069
+  n=5: all 169911 sets of n distinct nonzero rows (complete up to row order); nonsingular sets=104286 -> x n! = 12514320
+  [rowsets] n=5 nonsingular processed=104286
+     MAIN: violations=0 equality=0 (non-S among them=0) S-matrices=0 (S without equality=0)
+     MAIN: min R=3/2 (1.500000) at [00011,00101,01010,10100,11000] ; min R over non-S=3/2 (1.500000) at [00011,00101,01010,10100,11000]
+     L1(binary): violations=0 equality=0 (non-S=0) min Q=729/625 (1.166400) at [00011,00101,01110,10110,11001] ; min Q non-S=1.166400
+  (A046747 as recalled: n=5 -> 12514320)
+  n=6: row sets enumerated=67945521 (=C(63,6)=67945521), kept with nondecreasing column weights=1335400  (1.4s)
+  n=6: nonsingular canonical representatives=728626, exact-fallback adjugates=0  (5.7s)
+  [canonical] n=6 nonsingular processed=728626
+     MAIN: violations=0 equality=0 (non-S among them=0) S-matrices=0 (S without equality=0)
+     MAIN: min R=7/4 (1.750000) at [000011,000101,010111,011000,100001,101000] ; min R over non-S=7/4 (1.750000) at [000011,000101,010111,011000,100001,101000]
+     L1(binary): violations=0 equality=0 (non-S=0) min Q=14455/11664 (1.239283) at [000011,001101,010110,011001,101010,110101] ; min Q non-S=1.239283
+  completeness argument for n=6: every nonsingular A becomes, after sorting columns by weight and then rows
+  as binary words, a member of the enumerated family; c, D, maxnorm, Fnorm, S-property are permutation invariant.
+  n=6 spot check, 400 random uncanonicalised matrices: min R=21/8 (must be >= 7/4): True
+SECTION 4  complete search of the only region where MAIN can fail or be tight 7.9s
+  Necessary condition (exact, derived from A X = X A = I with |X_ij| <= 2/(n+1)): every row and column
+  of A has weight >= t and every two rows (columns) differ in >= t places, t = ceil((n+1)/2).
+  The search below is complete up to row/column permutation (doubly lexical normal form).
+  n= 2 t=2: complete=True nodes=0 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n= 3 t=2: complete=True nodes=4 leaves=1 (singular 0, S 1, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n= 4 t=3: complete=True nodes=1 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n= 5 t=3: complete=True nodes=3 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n= 6 t=4: complete=True nodes=2 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n= 7 t=4: complete=True nodes=15 leaves=1 (singular 0, S 1, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n= 8 t=5: complete=True nodes=3 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n= 9 t=5: complete=True nodes=17 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n=10 t=6: complete=True nodes=7 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n=11 t=6: complete=True nodes=607 leaves=2 (singular 0, S 2, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n=12 t=7: complete=True nodes=11 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.0s)
+  n=13 t=7: complete=True nodes=531 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.1s)
+  n=14 t=8: complete=True nodes=87 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (0.2s)
+  n=16 t=9: complete=True nodes=89 leaves=0 (singular 0, S 0, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (2.3s)
+  n=15 t=8: complete=False nodes=102912 leaves=96 (singular 0, S 96, non-S nonsingular 0, min R non-S -) R<1: none=True, R==1 exactly at the S leaves: True  (10.1s)
+SECTION 4b relaxed searches: all matrices with R <= (n+1)/(2s) (gap to the nearest non-S matrix) 20.7s
+  cross-check vs exhaustive SECTION 3 at n=5: min R with R<=3/2  search=3/2 exhaustive=3/2  agree=True
+  n= 5 s=2 (covers all A with R<=3/2): complete=True nodes=569 leaves=312 singular=52 S=0 viol=0 eq(non-S)=0 min R over non-S=3/2=1.50000 [00011,00101,01010,10100,11000]  (0.0s)
+  cross-check vs exhaustive SECTION 3 at n=6: min R with R<=7/6  search=None exhaustive=None  agree=True
+  n= 6 s=3 (covers all A with R<=7/6): complete=True nodes=71 leaves=17 singular=0 S=0 viol=0 eq(non-S)=0 min R over non-S=7/4=1.75000 [000111,011001,011110,101010,101101,110011]  (0.0s)
+  n= 7 s=3 (covers all A with R<=4/3): complete=True nodes=34714 leaves=9448 singular=929 S=1 viol=0 eq(non-S)=0 min R over non-S=4/3=1.33333 [0000111,0011001,0101010,0110100,1001100,1010010,1100001]  (0.4s)
+  n= 8 s=4 (covers all A with R<=9/8): complete=True nodes=3832 leaves=135 singular=39 S=0 viol=0 eq(non-S)=0 min R over non-S=9/5=1.80000 [00011111,01100111,01111001,10101011,10110110,11010101,11011010,11101100]  (0.0s)
+  n= 9 s=4 (covers all A with R<=5/4): complete=False nodes=129024 leaves=6653 singular=1090 S=0 viol=0 eq(non-S)=0 min R over non-S=5/4=1.25000 [000001111,000110011,000111100,011000101,011001010,101010001,101100010,110010100,110101000]  (5.1s)
+  n=11 s=5 (covers all A with R<=6/5): complete=False nodes=222208 leaves=3495 singular=906 S=0 viol=0 eq(non-S)=0 min R over non-S=2=2.00000 [00000011111,00011100011,00011111100,01100100101,01101001010,01110010011,10100101011,10101010001,10110000110,11001110110,11011001101]  (5.1s)
+SECTION 4c completeness test of the SECTION 4 search code against independent enumeration 31.5s
+  n=4 s=1: independent matrices meeting constraints=1015 -> distinct doubly-lexical forms=185 (max sort rounds 2, non-converged 0); search leaves=185 complete=True; forms missing from search=0  (0.0s)
+  n=5 s=2: independent matrices meeting constraints=2215 -> distinct doubly-lexical forms=312 (max sort rounds 2, non-converged 0); search leaves=312 complete=True; forms missing from search=0  (0.3s)
+  n=5 s=3: independent matrices meeting constraints=0 -> distinct doubly-lexical forms=0 (max sort rounds 0, non-converged 0); search leaves=0 complete=True; forms missing from search=0  (0.2s)
+  n=6 s=3: independent matrices meeting constraints=12 -> distinct doubly-lexical forms=4 (max sort rounds 1, non-converged 0); search leaves=17 complete=True; forms missing from search=0  (3.0s)
+  n=6 s=4: independent matrices meeting constraints=0 -> distinct doubly-lexical forms=0 (max sort rounds 0, non-converged 0); search leaves=0 complete=True; forms missing from search=0  (3.0s)
+SECTION 5  S-matrices from Hadamard matrices; L2 and MAIN/L1 equality, exact 38.0s
+  Sylvester      order  2 -> S-matrices of order n= 1: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Sylvester      order  4 -> S-matrices of order n= 3: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Sylvester      order  8 -> S-matrices of order n= 7: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Sylvester      order 16 -> S-matrices of order n=15: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Sylvester      order 32 -> S-matrices of order n=31: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=3      order  4 -> S-matrices of order n= 3: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=7      order  8 -> S-matrices of order n= 7: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=11     order 12 -> S-matrices of order n=11: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=19     order 20 -> S-matrices of order n=19: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=23     order 24 -> S-matrices of order n=23: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=31     order 32 -> S-matrices of order n=31: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=43     order 44 -> S-matrices of order n=43: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley q=47     order 48 -> S-matrices of order n=47: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  Paley GF(27)   order 28 -> S-matrices of order n=27: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  H2 x Paley12   order 24 -> S-matrices of order n=23: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  H2 x Paley20   order 40 -> S-matrices of order n=39: 9 variants, all pass (Gram def, Hadamard-def equivalence, L2 exact, |det|=(n+1)^((n+1)/2)/2^n, R=Q=1): True
+  search-found S-matrices (n=3,7,11,15 partial) passed through L2 and Hadamard reconstruction: 44
+  power check: 25 one-entry perturbations of S-matrices all fail L2 and have R>1, Q>1
+SECTION 6  L1 on real matrices with entries in [0,1], exact targeted tests 39.6s
+  grid n=2 values ['0', '1/4', '1/2', '3/4', '1']: nonsingular=512 violations=0 equality=0 (non-S=0) min Q=9/8; min Q non-binary=297/256 (1.16016)
+  grid n=3 values ['0', '1/2', '1']: nonsingular=12792 violations=0 equality=6 (non-S=0) min Q=1; min Q non-binary=4/3 (1.33333)
+  KKT at S (n=3): strict sign pattern=True; G on S=1 entries ['-3/4'] (expected -16n/k^3=-3/4), on S=0 entries ['5/4'] (expected 16(k+1)/k^3=5/4)
+     12 random feasible directions x eps in {1/2,1/10,1/1000,1e-6}: min Q=1.0000001481482304 (>1: True)
+  KKT at S (n=7): strict sign pattern=True; G on S=1 entries ['-7/32'] (expected -16n/k^3=-7/32), on S=0 entries ['9/32'] (expected 16(k+1)/k^3=9/32)
+     12 random feasible directions x eps in {1/2,1/10,1/1000,1e-6}: min Q=1.0000005623586703 (>1: True)
+  KKT at S (n=11): strict sign pattern=True; G on S=1 entries ['-11/108'] (expected -16n/k^3=-11/108), on S=0 entries ['13/108'] (expected 16(k+1)/k^3=13/108)
+     12 random feasible directions x eps in {1/2,1/10,1/1000,1e-6}: min Q=1.0000005671875056 (>1: True)
+  KKT at S (n=15): strict sign pattern=True; G on S=1 entries ['-15/256'] (expected -16n/k^3=-15/256), on S=0 entries ['17/256'] (expected 16(k+1)/k^3=17/256)
+     12 random feasible directions x eps in {1/2,1/10,1/1000,1e-6}: min Q=1.0000007181488582 (>1: True)
+  two-level alpha*S+beta*(J-S), n=3, 35 (alpha,beta) pairs incl. J-S: equality only at [('1', '0')]; min Q otherwise=1.001669
+  two-level alpha*S+beta*(J-S), n=7, 35 (alpha,beta) pairs incl. J-S: equality only at [('1', '0')]; min Q otherwise=1.001932
+  two-level alpha*S+beta*(J-S), n=11, 35 (alpha,beta) pairs incl. J-S: equality only at [('1', '0')]; min Q otherwise=1.001973
+  convex combinations of 2-3 permuted copies of S / S^T, n=3: 34 non-binary nonsingular cases, min Q=1.290249 (>1: True)
+  convex combinations of 2-3 permuted copies of S / S^T, n=7: 40 non-binary nonsingular cases, min Q=1.457527 (>1: True)
+  convex combinations of 2-3 permuted copies of S / S^T, n=11: 38 non-binary nonsingular cases, min Q=1.306826 (>1: True)
+SECTION 7  L1 heuristic minimisation over [0,1]^(n x n) (projected gradient, float), exact re-check 42.3s
+  n= 2: float min f/bound=1.125000 ; exact Q of rationalised minimiser=1.12500000 ; non-binary entries=0 ; is S=False
+  n= 3: float min f/bound=1.000000 ; exact Q of rationalised minimiser=1.00000000 ; non-binary entries=0 ; is S=True
+  n= 4: float min f/bound=1.085069 ; exact Q of rationalised minimiser=1.08506944 ; non-binary entries=0 ; is S=False
+  n= 5: float min f/bound=1.166400 ; exact Q of rationalised minimiser=1.16640000 ; non-binary entries=0 ; is S=False
+  n= 6: float min f/bound=1.216607 ; exact Q of rationalised minimiser=1.21660746 ; non-binary entries=2 ; is S=False
+  n= 7: float min f/bound=1.000000 ; exact Q of rationalised minimiser=1.00000000 ; non-binary entries=0 ; is S=True
+  n= 8: float min f/bound=1.104193 ; exact Q of rationalised minimiser=1.10419324 ; non-binary entries=0 ; is S=False
+  n= 9: float min f/bound=1.105967 ; exact Q of rationalised minimiser=1.10596708 ; non-binary entries=0 ; is S=False
+  n=10: float min f/bound=1.142572 ; exact Q of rationalised minimiser=1.14257234 ; non-binary entries=6 ; is S=False
+  n=11: float min f/bound=1.000000 ; exact Q of rationalised minimiser=1.00000000 ; non-binary entries=0 ; is S=True
+  n=12: float min f/bound=1.074995 ; exact Q of rationalised minimiser=1.07499518 ; non-binary entries=3 ; is S=False
+SECTION 8  MAIN at larger orders: circulants, neighbourhoods of S, random, hill-climb (exact certification) 42.5s
+  all circulants       n=2: matrices=4 nonsingular=2 viol=0 eq=0 (non-S 0) S=0 minR=1.50000 minR(non-S)=3/2=1.50000 L1viol=0 minQ(non-S)=1.12500 fallbacks=2
+  all circulants       n=3: matrices=8 nonsingular=6 viol=0 eq=3 (non-S 0) S=3 minR=1.00000 minR(non-S)=2=2.00000 L1viol=0 minQ(non-S)=1.33333 fallbacks=2
+  all circulants       n=4: matrices=16 nonsingular=8 viol=0 eq=0 (non-S 0) S=0 minR=1.66667 minR(non-S)=5/3=1.66667 L1viol=0 minQ(non-S)=1.21528 fallbacks=8
+  all circulants       n=5: matrices=32 nonsingular=30 viol=0 eq=0 (non-S 0) S=0 minR=1.50000 minR(non-S)=3/2=1.50000 L1viol=0 minQ(non-S)=1.46250 fallbacks=2
+  all circulants       n=6: matrices=64 nonsingular=36 viol=0 eq=0 (non-S 0) S=0 minR=1.75000 minR(non-S)=7/4=1.75000 L1viol=0 minQ(non-S)=1.28549 fallbacks=28
+  all circulants       n=7: matrices=128 nonsingular=126 viol=0 eq=14 (non-S 0) S=14 minR=1.00000 minR(non-S)=4/3=1.33333 L1viol=0 minQ(non-S)=1.01587 fallbacks=2
+  all circulants       n=8: matrices=256 nonsingular=160 viol=0 eq=0 (non-S 0) S=0 minR=1.50000 minR(non-S)=3/2=1.50000 L1viol=0 minQ(non-S)=1.38375 fallbacks=96
+  all circulants       n=9: matrices=512 nonsingular=450 viol=0 eq=0 (non-S 0) S=0 minR=1.89474 minR(non-S)=36/19=1.89474 L1viol=0 minQ(non-S)=1.40936 fallbacks=62
+  all circulants       n=10: matrices=1024 nonsingular=740 viol=0 eq=0 (non-S 0) S=0 minR=1.74000 minR(non-S)=87/50=1.74000 L1viol=0 minQ(non-S)=1.30460 fallbacks=284
+  all circulants       n=11: matrices=2048 nonsingular=2046 viol=0 eq=22 (non-S 0) S=22 minR=1.00000 minR(non-S)=6/5=1.20000 L1viol=0 minQ(non-S)=1.00364 fallbacks=2
+  all circulants       n=12: matrices=4096 nonsingular=2592 viol=0 eq=0 (non-S 0) S=0 minR=1.81071 minR(non-S)=507/280=1.81071 L1viol=0 minQ(non-S)=1.25155 fallbacks=1504
+  all circulants       n=13: matrices=8192 nonsingular=8190 viol=0 eq=0 (non-S 0) S=0 minR=1.16667 minR(non-S)=7/6=1.16667 L1viol=0 minQ(non-S)=1.16334 fallbacks=2
+  S single flips (H8) n=7: matrices=49 nonsingular=49 viol=0 eq=0 (non-S 0) S=0 minR=1.33333 minR(non-S)=4/3=1.33333 L1viol=0 minQ(non-S)=1.20635 fallbacks=0
+  S double flips (H8) n=7: matrices=1176 nonsingular=1176 viol=0 eq=0 (non-S 0) S=0 minR=1.60000 minR(non-S)=8/5=1.60000 L1viol=0 minQ(non-S)=1.30939 fallbacks=0
+  S single flips (P12) n=11: matrices=121 nonsingular=121 viol=0 eq=0 (non-S 0) S=0 minR=1.20000 minR(non-S)=6/5=1.20000 L1viol=0 minQ(non-S)=1.07636 fallbacks=0
+  S double flips (P12) n=11: matrices=7260 nonsingular=7260 viol=0 eq=0 (non-S 0) S=0 minR=1.38462 minR(non-S)=18/13=1.38462 L1viol=0 minQ(non-S)=1.13218 fallbacks=0
+  S single flips (H16) n=15: matrices=225 nonsingular=225 viol=0 eq=0 (non-S 0) S=0 minR=1.14286 minR(non-S)=8/7=1.14286 L1viol=0 minQ(non-S)=1.03946 fallbacks=0
+  S single flips (P20) n=19: matrices=361 nonsingular=361 viol=0 eq=0 (non-S 0) S=0 minR=1.11111 minR(non-S)=10/9=1.11111 L1viol=0 minQ(non-S)=1.02404 fallbacks=0
+  S single flips (P24) n=23: matrices=529 nonsingular=529 viol=0 eq=0 (non-S 0) S=0 minR=1.09091 minR(non-S)=12/11=1.09091 L1viol=0 minQ(non-S)=1.01617 fallbacks=0
+  random n= 7 (450 matrices, densities .3/.5/.7): nonsingular=134 violations=0 non-S equalities=0 min R=3.00000 L1 viol=0
+  random n= 8 (450 matrices, densities .3/.5/.7): nonsingular=177 violations=0 non-S equalities=0 min R=4.00000 L1 viol=0
+  random n= 9 (450 matrices, densities .3/.5/.7): nonsingular=215 violations=0 non-S equalities=0 min R=4.28571 L1 viol=0
+  random n=10 (450 matrices, densities .3/.5/.7): nonsingular=228 violations=0 non-S equalities=0 min R=3.98276 L1 viol=0
+  random n=11 (450 matrices, densities .3/.5/.7): nonsingular=270 violations=0 non-S equalities=0 min R=4.95000 L1 viol=0
+  random n=12 (450 matrices, densities .3/.5/.7): nonsingular=306 violations=0 non-S equalities=0 min R=5.13953 L1 viol=0
+  random n=15 (450 matrices, densities .3/.5/.7): nonsingular=372 violations=0 non-S equalities=0 min R=7.00000 L1 viol=0
+  random n=16 (450 matrices, densities .3/.5/.7): nonsingular=395 violations=0 non-S equalities=0 min R=8.25000 L1 viol=0
+  random n=19 (450 matrices, densities .3/.5/.7): nonsingular=432 violations=0 non-S equalities=0 min R=8.60035 L1 viol=0
+  random n=20 (450 matrices, densities .3/.5/.7): nonsingular=439 violations=0 non-S equalities=0 min R=8.28646 L1 viol=0
+  random n=24 (450 matrices, densities .3/.5/.7): nonsingular=449 violations=0 non-S equalities=0 min R=11.03536 L1 viol=0
+  random n=31 (450 matrices, densities .3/.5/.7): nonsingular=450 violations=0 non-S equalities=0 min R=10.95886 L1 viol=0
+  hill-climb n= 7: endpoints=9 (S-matrices reached=4) violations=0 non-S equalities=0 min R non-S=2=2.00000
+  hill-climb n= 8: endpoints=6 (S-matrices reached=0) violations=0 non-S equalities=0 min R non-S=3/2=1.50000
+  hill-climb n= 9: endpoints=6 (S-matrices reached=0) violations=0 non-S equalities=0 min R non-S=50/23=2.17391
+  hill-climb n=10: endpoints=6 (S-matrices reached=0) violations=0 non-S equalities=0 min R non-S=55/23=2.39130
+  hill-climb n=11: endpoints=9 (S-matrices reached=3) violations=0 non-S equalities=0 min R non-S=2=2.00000
+  hill-climb n=12: endpoints=3 (S-matrices reached=0) violations=0 non-S equalities=0 min R non-S=1547/577=2.68111
+  hill-climb n=13: endpoints=3 (S-matrices reached=0) violations=0 non-S equalities=0 min R non-S=539/151=3.56954
+  hill-climb n=14: endpoints=3 (S-matrices reached=0) violations=0 non-S equalities=0 min R non-S=645/214=3.01402
+  hill-climb n=15: endpoints=6 (S-matrices reached=3) violations=0 non-S equalities=0 min R non-S=1752/527=3.32448
+  hill-climb n=16: endpoints=3 (S-matrices reached=0) violations=0 non-S equalities=0 min R non-S=52649/20810=2.52999
+SECTION 9  c(A) from literal (n-1)-minors (Bareiss) vs adjugate route, n=5..12 43.8s
+  34 nonsingular matrices (incl. S-matrices of orders 7 and 11): mismatches=0
+SECTION 10 analytic cross-check (not part of the search): Plotkin-type counting on the region of SECTION 4
+  rows of A plus the zero word = m=n+1 words of length n, pairwise distance >= t=ceil((n+1)/2).
+  Sum of pairwise distances <= n*floor(m/2)*ceil(m/2) (column count); needs >= C(m,2)*t.
+  n in 1..64 where region is empty by counting: all even n
+  n where counting is exactly tight (forces equidistance, column sums (n+1)/2): all odd n
+  in the tight case A A^T has diagonal (n+1)/2 and off-diagonal (n+1)/4, so integrality forces n=1 or n = 3 mod 4
+  and then A A^T = (n+1)(I+J)/4. This is consistent with every search leaf in SECTION 4 being an S-matrix.
+==============================================================================
+anomalies: 0
+S-matrix variants tested for L2: 188, L2 failures: 0
+skipped for time: nothing
+total runtime 43.9s
+SUMMARY: NO counterexample found | MAIN: exhaustive n<=6 (all classes), all A with R<=1 enumerated completely for n<=14 and 16 (n=15 partial) and all are S-matrices with R=1, sampled to n=31 | L1: binary exhaustive n<=6, real [0,1] grids n<=3, KKT/perturbation/convex tests at S n=3..15, heuristic optimisation n<=12, no violation, equality only at S | L2: exact on 188 S-matrix variants n=1..47, failures=0 | runtime 43.9s

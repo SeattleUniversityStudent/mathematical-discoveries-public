@@ -1,0 +1,29 @@
+n=1 exhaustive: nonsingular=1 equality_cases=1 S_matrices=1 min c(n+1)/(2D)=1 min_nonequality_ratio=None  [0.0s]
+   S-matrices among all 2^1 binary matrices: 1
+n=2 exhaustive: nonsingular=6 equality_cases=0 S_matrices=0 min c(n+1)/(2D)=3/2 min_nonequality_ratio=3/2  [0.0s]
+   S-matrices among all 2^4 binary matrices: 0
+n=3 exhaustive: nonsingular=174 equality_cases=6 S_matrices=6 min c(n+1)/(2D)=1 min_nonequality_ratio=2  [0.1s]
+   S-matrices among all 2^9 binary matrices: 6
+n=4 exhaustive: nonsingular=22560 equality_cases=0 S_matrices=0 min c(n+1)/(2D)=5/4 min_nonequality_ratio=5/4  [4.4s]
+   S-matrices among all 2^16 binary matrices: 0
+n=5 random(15000): nonsingular=4276 equality_cases=0 S_matrices=0 min c(n+1)/(2D)=3/2 min_nonequality_ratio=3/2  [6.7s]
+n=6 random(8000): nonsingular=2440 equality_cases=0 S_matrices=0 min c(n+1)/(2D)=35/18 min_nonequality_ratio=35/18  [8.9s]
+n=7 random(3000): nonsingular=1019 equality_cases=0 S_matrices=0 min c(n+1)/(2D)=3 min_nonequality_ratio=3  [10.4s]
+n=5 hill-climb min ratio=3/2 (as float 1.5000) S-matrix=False  [10.6s]
+n=6 hill-climb min ratio=7/4 (as float 1.7500) S-matrix=False  [11.0s]
+n=7 hill-climb min ratio=2 (as float 2.0000) S-matrix=False  [11.8s]
+n=8 hill-climb min ratio=27/14 (as float 1.9286) S-matrix=False  [12.6s]
+Sylvester order 2: n=1 isS=True D=1 c=1 2D/(n+1)=1 eq=1  [12.6s]
+   permuted S: eq=1; one-flip perturbation: nonsing=0 eq=0
+Sylvester order 4: n=3 isS=True D=2 c=1 2D/(n+1)=1 eq=1  [12.6s]
+   permuted S: eq=1; one-flip perturbation: nonsing=1 eq=0
+Sylvester order 8: n=7 isS=True D=32 c=8 2D/(n+1)=8 eq=1  [12.6s]
+   permuted S: eq=1; one-flip perturbation: nonsing=1 eq=0
+Sylvester order 16: n=15 isS=True D=131072 c=16384 2D/(n+1)=16384 eq=1  [12.7s]
+   permuted S: eq=1; one-flip perturbation: nonsing=1 eq=0
+n=11 QR circulant candidates that are S-matrices: 2
+   n=11 S: eq=1 S=1
+n=1: A=[1], D=1, c=1 (empty det), 2D/(n+1)=1, isS=True
+
+TOTAL FAILURES: 0
+elapsed 12.8s
