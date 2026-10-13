@@ -19,7 +19,7 @@ From 2026-10-11, a new result is released only after its exact published claim h
 - printed theorem statements and their transitive axioms, limited to propext, Classical.choice and Quot.sound, with no sorry, no project axioms and no native-evaluation trust;
 - a separate review that the formal statements match the published claim.
 
-The three results below were published before this standard was adopted. They have **not** been formally verified, and their formal verification is pending.
+The first three results below were published before this standard was adopted. They have **not** been formally verified, and their formal verification is pending.
 
 ## Results
 
@@ -28,6 +28,7 @@ The three results below were published before this standard was adopted. They ha
 | [A failure of log-concavity for Carlitz composition lengths](results/carlitz-log-concavity/) | unreviewed draft | new claim not cleared | 2 (two vendors), both passed | none (pending) |
 | [Wythoff Nim with one pass: bounded displacement of P-positions](results/wythoff-pass-displacement/) | unreviewed draft | known result | 1, passed | none (pending) |
 | [A cofactor bound from the S-matrix theorem](results/s-matrix-cofactor-bound/) | unreviewed draft | reconstruction | 1 review plus recheck of the revision, passed | none (pending) |
+| [Fibonacci Nim with three equal heaps: deleting a pair can flip the outcome in both directions](results/fibonacci-three-equal-heaps/) | unreviewed draft | reconstruction | 1, passed | Lean kernel-checked (scope: FORMAL/coverage.json) |
 
 ## Rights
 

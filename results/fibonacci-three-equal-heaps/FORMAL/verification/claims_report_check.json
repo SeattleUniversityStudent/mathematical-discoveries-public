@@ -1,0 +1,18 @@
+{
+  "typed_report_source_sha256": "08b184ec38a72554bddc2b0a4736dc987b87bde1420d187a1fe94ff13b63fd6d",
+  "full_report_stdout_sha256": "b85ff3be23aacd7ebd51c91c2f6a3bb6f01fd9b82085924c4102ca821cfe9ba6",
+  "actual_axioms": {
+    "RQ9F1.triple_six_is_P": [
+      "propext"
+    ],
+    "RQ9F1.single_six_is_N": [
+      "propext"
+    ],
+    "RQ9F1.triple_twenty_is_N": [
+      "propext"
+    ],
+    "RQ9F1.single_twenty_is_P": [
+      "propext"
+    ]
+  }
+}

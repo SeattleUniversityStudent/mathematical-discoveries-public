@@ -1,0 +1,16 @@
+{
+ "assignment": "RQ9-E1-CLEAN-BUILD-G1",
+ "generation": 1,
+ "status": "CLEAN_SUBMITTED_SOURCE_BUILD_AND_TYPED_CLAIMS_PASS",
+ "reason": {
+  "compiled_modules": 127,
+  "typed_claims": 4
+ },
+ "finished_utc": "2026-10-13T14:11:58.178138+00:00",
+ "unrun_modules": [],
+ "commands_executed": 128,
+ "no_project_cache_reuse": true,
+ "source_manifest_sha256": "f256ba4b274396585fdbdd1935f2f40a62429772a6ce2e8dac6382228bf72d15",
+ "limits": "Clean submitted-source build and four typed finite Claims only. No stored-declaration replay, independent semantic correspondence, newty or publication acceptance.",
+ "compiled_modules_listed_in": "build_execution_summary.json (label order)"
+}

@@ -1,0 +1,39 @@
+{
+ "result": "GAM-FIB-001",
+ "revision": "r1",
+ "lean_source_revision": "RQ9-F1R1-E1",
+ "assertions": [
+  {
+   "id": "A1",
+   "claim": "In global Fibonacci Nim with first bound r = 1, the position with three heaps of size 6 is a P-position (the player to move loses): Outcome <6,6,6,1> false",
+   "theorem": "triple_six_is_P",
+   "relation": "exact"
+  },
+  {
+   "id": "A2",
+   "claim": "In global Fibonacci Nim with first bound r = 1, the position with one heap of size 6 (heap sizes 0,0,6) is an N-position (the player to move wins): Outcome <0,0,6,1> true",
+   "theorem": "single_six_is_N",
+   "relation": "exact"
+  },
+  {
+   "id": "A3",
+   "claim": "In global Fibonacci Nim with first bound r = 1, the position with three heaps of size 20 is an N-position: Outcome <20,20,20,1> true",
+   "theorem": "triple_twenty_is_N",
+   "relation": "exact"
+  },
+  {
+   "id": "A4",
+   "claim": "In global Fibonacci Nim with first bound r = 1, the position with one heap of size 20 (heap sizes 0,0,20) is a P-position: Outcome <0,0,20,1> false",
+   "theorem": "single_twenty_is_P",
+   "relation": "exact"
+  }
+ ],
+ "reading_of_Outcome": "Outcome p true means p is an N-position and Outcome p false means p is a P-position, under the normal-play rule of Model.lean (a move removes t counters, 1 <= t <= min(heap, r), from one heap and the next bound is 2t). That the inductively defined Outcome predicate equals this game-theoretic outcome is a written argument (FORMAL/provenance/MODEL_AND_CORRESPONDENCE_NOTE.md, section Explicit strategy derivations) that a separate reviewer checked; it is not a Lean theorem.",
+ "not_covered": [
+  "the generic equivalence of the inductive Outcome predicate with the game-theoretic outcome (written argument only)",
+  "the Sprague-Grundy values, the threshold recurrence, the table for n = 1..8 and the claim that n = 6 is the first discrepancy (finite Python calculations in PROOF.md)",
+  "the Python programs, logs and certificates",
+  "any statement for all n, any classification of the positions (n,n,n;1), any infinite family",
+  "priority or originality"
+ ]
+}

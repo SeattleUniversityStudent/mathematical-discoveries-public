@@ -1,0 +1,8 @@
+RQ9F1.triple_six_is_P : RQ9F1.Outcome { a := 6, b := 6, c := 6, r := 1 } false
+'RQ9F1.triple_six_is_P' depends on axioms: [propext]
+RQ9F1.single_six_is_N : RQ9F1.Outcome { a := 0, b := 0, c := 6, r := 1 } true
+'RQ9F1.single_six_is_N' depends on axioms: [propext]
+RQ9F1.triple_twenty_is_N : RQ9F1.Outcome { a := 20, b := 20, c := 20, r := 1 } true
+'RQ9F1.triple_twenty_is_N' depends on axioms: [propext]
+RQ9F1.single_twenty_is_P : RQ9F1.Outcome { a := 0, b := 0, c := 20, r := 1 } false
+'RQ9F1.single_twenty_is_P' depends on axioms: [propext]

@@ -1,0 +1,13 @@
+{
+  "purpose": "Route for rerunning the independent reviewer's retained program. RERUN.json (the producer's) is unchanged and covers only the two producer programs.",
+  "program": "review/reviewer-1/rev-a-rq9-a_check.py",
+  "program_sha256": "0a87982d7b8fddb5c358624f428118779bf2eb9b464801ec6fc21570333d3e03",
+  "commands": [
+    "create the output directory named on line 191 of the program (mkdir -p on that directory)",
+    "python3 -I review/reviewer-1/rev-a-rq9-a_check.py > stdout.txt"
+  ],
+  "path_note": "The program writes its output file to a fixed path in the reviewer's scratch area, given literally on line 191 of the program; that directory must exist. The source was not altered.",
+  "expected_output": "review/reviewer-1/rev-a-rq9-a_check_output.txt (reviewer) and review/publisher_rerun/rev-a-rq9-a_check_rerun_output.txt (publisher); identical except the two elapsed-time lines",
+  "covers": "checks C1 to C7 and the sanity line only; it does not read the producer's binary files",
+  "not_retained": "the post-exposure comparison helper named in the verdict"
+}

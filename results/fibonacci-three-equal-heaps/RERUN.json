@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "requirements": "Python 3 standard library; run in the extracted directory.",
+  "runs": [
+    {
+      "build": null,
+      "command": "timeout 120s python3 fibonacci_equal_probe.py --bound 80 > fibonacci_equal_probe.log",
+      "log": "fibonacci_equal_probe.log",
+      "observed_exit_code": 0
+    },
+    {
+      "build": null,
+      "command": "timeout 120s python3 fibonacci_literal_check.py > fibonacci_literal_check.log",
+      "log": "fibonacci_literal_check.log",
+      "observed_exit_code": 0
+    }
+  ],
+  "notes": "The second command depends on the binary emitted by the first. Wall-clock timings vary. Finite calculations only."
+}

@@ -1,0 +1,9 @@
+import Claims
+#check (RQ9F1.triple_six_is_P : RQ9F1.Outcome ⟨6, 6, 6, 1⟩ false)
+#print axioms RQ9F1.triple_six_is_P
+#check (RQ9F1.single_six_is_N : RQ9F1.Outcome ⟨0, 0, 6, 1⟩ true)
+#print axioms RQ9F1.single_six_is_N
+#check (RQ9F1.triple_twenty_is_N : RQ9F1.Outcome ⟨20, 20, 20, 1⟩ true)
+#print axioms RQ9F1.triple_twenty_is_N
+#check (RQ9F1.single_twenty_is_P : RQ9F1.Outcome ⟨0, 0, 20, 1⟩ false)
+#print axioms RQ9F1.single_twenty_is_P

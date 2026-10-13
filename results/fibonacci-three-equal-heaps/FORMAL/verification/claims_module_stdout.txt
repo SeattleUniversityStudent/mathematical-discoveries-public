@@ -1,0 +1,4 @@
+'RQ9F1.triple_six_is_P' depends on axioms: [propext]
+'RQ9F1.single_six_is_N' depends on axioms: [propext]
+'RQ9F1.triple_twenty_is_N' depends on axioms: [propext]
+'RQ9F1.single_twenty_is_P' depends on axioms: [propext]

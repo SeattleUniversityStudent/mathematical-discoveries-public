@@ -1,0 +1,56 @@
+{
+ "description": "Summary of the verifier's native stored-declaration replay record. Derived by the publisher: absolute private paths removed; values copied unchanged except that internal role words were reworded.",
+ "source_record": {
+  "name": "RQ9_E1_STORED_REPLAY_G2_FULL_EXECUTION_NATIVE.json",
+  "sha256": "8bba4b741dc50aa9c186c6553484b50d5c6da48e0b371a1e462ac764b8dcebdf",
+  "bytes": 96406
+ },
+ "program": "leanchecker",
+ "arguments": [
+  "--fresh",
+  "-v",
+  "Claims"
+ ],
+ "exit_code": 0,
+ "termination_reason": "EXITED",
+ "started_utc": "2026-10-13T15:35:36.108155+00:00",
+ "finished_utc": "2026-10-13T15:36:48.419402+00:00",
+ "stdout_sha256": "c0f94d893dd52b0eb30262179f2197e8c1a543427370460558db51f0feb4e4e1",
+ "stderr_bytes": 0,
+ "sampled_peak_rss_bytes": 1023082496,
+ "memory_cap_bytes": 1610612736,
+ "rss_sample_count": 270,
+ "modules_checked_before_and_after": 127,
+ "toolchain_files_checked_before_and_after": 7974,
+ "input_integrity_preserved": true,
+ "verifier_assessment": {
+  "assignment": "RQ9-E1-STORED-REPLAY-G2",
+  "assessed_utc": "2026-10-13T15:38:29.953077+00:00",
+  "execution_scope": "one pinned Lean 4.34 leanchecker --fresh -v Claims stored-declaration replay; exact four finite P/N Claims only",
+  "coverage_basis": "Pinned LeanChecker.lean --fresh implementation imports Claims and replays env.constants.map\u2081 in fresh kernel environment; exact source import graph is Claims -> Chunk124 ... Chunk00 -> Model -> Std; 127 submitted source/olean hashes and 7974 dependency files checked before/after",
+  "per_declaration_verbose_log": false,
+  "source_manifest_sha256": "f256ba4b274396585fdbdd1935f2f40a62429772a6ce2e8dac6382228bf72d15",
+  "output_manifest_sha256": "980d9efd3392ff0be978cada47ec1a426c4692ea4beba967ad011a9e2f05807c",
+  "checker_binary_sha256": "cfde41cb11dde58c84e9c60c551fd104bb2fc1104ad44dca932a923120272a35",
+  "checker_source_sha256": "2d18ec111d73c536b0bdee2533556bb9548c349f386797d3d3837b1f84d55dae",
+  "prior_clean_build_result_sha256": "c717df81f8566d7cee2001ebb9160a30f0add507c814ba27dd2f4149141f29e6",
+  "prior_typed_axiom_report_sha256": "6da48d0813d4fcca46c17fa4f38835ab823358753b51b53a3daa2b2883c5ba70",
+  "actual_axioms_by_claim": {
+   "RQ9F1.triple_six_is_P": [
+    "propext"
+   ],
+   "RQ9F1.single_six_is_N": [
+    "propext"
+   ],
+   "RQ9F1.triple_twenty_is_N": [
+    "propext"
+   ],
+   "RQ9F1.single_twenty_is_P": [
+    "propext"
+   ]
+  },
+  "trust_policy": "FRG-1 strict permitted logical axioms propext, Classical.choice, Quot.sound; each exact claim uses only propext",
+  "verdict": "STORED_DECLARATION_REPLAY_PASS_FOR_EXACT_CLAIMS_CLOSURE",
+  "formal_acceptance_scope": "The four exact submitted finite P/N declarations have a clean source build, permitted transitive axioms, fresh stored-declaration kernel replay and separately attributed written correspondence PASS. This is bounded LEAN ACCEPTED for those four formal statements only; project must independently consume this receipt and bind any release package."
+ }
+}

@@ -1,0 +1,26 @@
+[sanity] capped vs uncapped Grundy & outcome, 3 heaps <=12, r<=30: mismatches=0
+[C1] k=1,2,3 heaps, entries<=45: T_rec!=T_lit count=0, 'P iff r<T' violations (r=1..max+2)=0; examples=[]
+[C1] T_rec(0,0,0)=inf
+  time 4.3s
+[C2] (n,n;r) and (0,n,n;r) N-instances for n<=60, r<=n+2: [] (count 0)
+[C2] n<=45 with T_lit(n,n,n)>n: []; n in 46..100 with T_rec(n,n,n)>n: []
+[C3] G(6, 6, 6);1 = 0 (P), claimed 0: ok
+[C3] G(0, 0, 6);1 = 1 (N), claimed 1: ok
+[C3] G(5, 6, 6);2 = 1 (N), claimed 1: ok
+[C3] G(4, 6, 6);2 = 0 (P), claimed 0: ok
+[C3] G(20, 20, 20);1 = 1 (N), claimed 1: ok
+[C3] G(0, 0, 20);1 = 0 (P), claimed 0: ok
+[C3] G(19, 20, 20);2 = 0 (P), claimed 0: ok
+[C4] first moves from (6,6,6;1): [((5, 6, 6), 2)]
+[C4] winning responses from (5,6,6;2) [(heap index in sorted (5,6,6), t, child, bound)]: [(0, 1, (4, 6, 6), 2)]
+[C4] first moves from (20,20,20;1) up to symmetry: [((19, 20, 20), 2, 0)]
+[C4] winning response unique and equal to 'one more from smallest heap': True
+[C5] T(n,n,n), n=1..8: [1, 2, 3, 1, 5, 6, 7, 8]
+[C5] Zeckendorf smallest summand 1..8: [1, 2, 3, 1, 5, 1, 2, 8]; literal one-heap thresholds: [1, 2, 3, 1, 5, 1, 2, 8]
+[C5] one-heap T vs Zeckendorf mismatches: literal n<=60 [], recurrence n<=300 []
+[C5] first n with T(n,n,n) != Zeckendorf smallest: 6
+[C5] extra: T(n,n,n) n=1..40 (recurrence): [1, 2, 3, 1, 5, 6, 7, 8, 1, 3, 2, 1, 13, 14, 15, 3, 1, 5, 1, 1, 21, 1, 3, 2, 2, 26, 5, 1, 2, 30, 3, 2, 33, 3, 1, 1, 2, 2, 10, 3]
+[C6] sorted tuples 0<=a<=b<=c<=80: 91881
+[C7] states=70840, legal removal instances (heap index, t)=1788710, distinct child positions=1633170, threshold disagreements=0
+SUMMARY: C1=held, C2=held, C3=held, C4=held, C5=held, C6=held, C7=held
+total time 8.1s

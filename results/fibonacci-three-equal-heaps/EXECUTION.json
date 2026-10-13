@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-13",
+  "python": "3.13.16",
+  "platform": "x86-64 Linux",
+  "dependencies": "Python standard library only",
+  "reruns": [
+    {
+      "commands": [
+        "timeout 120s python3 fibonacci_equal_probe.py --bound 80 > fibonacci_equal_probe.log"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "fibonacci_thresholds.bin",
+        "fibonacci_equal_values.json",
+        "fibonacci_equal_probe.log"
+      ],
+      "identical": false,
+      "identical_except": "seconds field in the log (runtime measurement)",
+      "threshold_binary_sha256": "eee40b74dd77099183c5c64ce3c26f9a79cace7dd89a1bf62132fbee7e8341ef"
+    },
+    {
+      "commands": [
+        "timeout 120s python3 fibonacci_literal_check.py > fibonacci_literal_check.log"
+      ],
+      "exit_code": 0,
+      "compared": [
+        "fibonacci_literal_certificate.bin",
+        "fibonacci_literal_check.log"
+      ],
+      "identical": false,
+      "identical_except": "seconds field in the log (runtime measurement)",
+      "certificate_sha256": "8bc6a2357846f88c6e693a6f3fa86f20da60de195bd2b8aa3919c255dd2969c7"
+    }
+  ],
+  "reviewer_program_rerun": {
+    "program": "review/reviewer-1/rev-a-rq9-a_check.py",
+    "program_sha256": "0a87982d7b8fddb5c358624f428118779bf2eb9b464801ec6fc21570333d3e03",
+    "command": "python3 -I rev-a-rq9-a_check.py",
+    "exit_code": 0,
+    "stderr_bytes": 0,
+    "note": "Run unmodified by the publisher on 2026-10-13 with Python 3.13.16 on x86-64 Linux. The program has a hard-coded output path in the reviewer's scratch directory; the publisher created that directory for the run and copied the file out. The program is self-contained and reads no producer file.",
+    "output": "review/publisher_rerun/rev-a-rq9-a_check_rerun_output.txt",
+    "output_sha256": "80a2707e6c000344716178d689a14fea6b9525f0c954e4e9d85fdcc4ab2f57c1",
+    "reviewer_output_sha256": "cdfeebbda8e9dd7b7e5411840ebb9f87e179d0c4cc3262dcdb6ed969f4a68155",
+    "identical_except": "the two elapsed-time lines (C1 step time 4.3 s vs 4.9 s, total 8.1 s vs 9.1 s); every check result line C1 to C7 and the sanity line is identical, SUMMARY C1 to C7 = held"
+  },
+  "all_completed_reruns_matched": true,
+  "note": "All numerical outputs and both binary files matched exactly; only runtime measurements differed. The Lean build and replay were run by the formal verifier, not by the publisher."
+}
