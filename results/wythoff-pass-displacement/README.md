@@ -34,7 +34,7 @@ R. Miyadera, H. Manabe, M. Fukui, *Wythoff's Game with a Pass*, Integers 25 (202
 | RIGHTS.md | Rights and licensing status |
 | MANIFEST.json | SHA-256 and size of every other file |
 
-PROOF.md and RERUN.json are byte-identical to the reviewed revision (archive SHA-256 a460b07e50d5a478d7b2486330ac0a3e7600111ff2f2c11083aee8b11b16b486). That archive's own short README.md and REVIEW.md, written before any review returned, are replaced by this README and REVIEW.md.
+PROOF.md and RERUN.json are byte-identical to the reviewed revision (archive SHA-256 a460b07e50d5a478d7b2486330ac0a3e7600111ff2f2c11083aee8b11b16b486). That archive's own short README.md and REVIEW.md, written before any review returned, are replaced by this README and REVIEW.md. PROOF.md is retained as the original pre-review note: its closing statement that no separate review is supplied describes that original delivery. The later AI review and its finite checks are supplied in REVIEW.md and review/.
 
 ## What was actually run
 
@@ -58,3 +58,4 @@ No licence is granted. See RIGHTS.md.
 
 - r1: first public release.
 - r1, documentation update of 2026-10-11: the formal-verification status above was added. Only README.md and MANIFEST.json changed; the mathematics, programs, logs and reviews are unchanged.
+- r1, documentation correction of 2026-10-14: clarified that PROOF.md’s pre-review closing sentence describes the original delivery. Only README.md and MANIFEST.json changed; the mathematics and review evidence are unchanged.

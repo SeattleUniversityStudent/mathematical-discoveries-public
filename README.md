@@ -1,8 +1,8 @@
-# mathematical-discoveries-public
+# Mathematical research notes
 
-Mathematical contributions with explicit claims, proofs, prior-work references and reproducibility records. Each result has its own folder under `results/` with a README, the full proof, the programs and logs, a review record and a manifest of file hashes.
+This is a personal collection of AI-assisted mathematical research notes, including known results, reconstructions and candidate new claims. The notes provide explicit claims, proofs, prior-work references and reproducibility records. Each result has its own folder under `results/` with a README, the full proof, the programs and logs, a review record and a manifest of file hashes.
 
-All results here are AI-assisted. Every result states three separate things:
+The collection supports exploration, understanding and useful mathematical contributions. Inclusion does not establish originality; each note states its contribution and limitations. Every result states three separate things:
 
 - **Proof status:** "unreviewed draft" means no human expert has reviewed the proof. AI reviews, where present, are recorded in the result's REVIEW.md and do not change this label.
 - **Result status:** "known result", "reconstruction", "new claim not cleared" (no prior statement found in a bounded search; priority not established) or "conjecture".

@@ -6,7 +6,7 @@ Contribution MAT-SCF-001, revision r2, released 2026-10-11.
 **Result status:** reconstruction.
 **Formal verification:** none. No Lean or other proof-assistant check has been run on this result. Formal verification is pending; this is an AI-reviewed draft, not part of a formally verified collection.
 
-This work is AI-assisted: AI systems wrote the note and the check programs described below. An AI reviewer checked it, and the same reviewer rechecked the revised lines (see REVIEW.md). No human has reviewed or endorsed it. No proof assistant was used. No new result is claimed: the bound is a two-step consequence of a published theorem.
+This work is AI-assisted: AI systems wrote the note and the check programs described below. An AI reviewer checked it, and a separate run of the same vendor’s reviewer rechecked the revised lines (see REVIEW.md for the provenance of both runs). No human has reviewed or endorsed it. No proof assistant was used. No new result is claimed: the bound is a two-step consequence of the cited S-matrix theorem, with the recent-preprint dependence described below.
 
 ## Statement
 
@@ -69,3 +69,4 @@ No licence is granted. See RIGHTS.md.
 - r1: first version; the review found one wording GAP.
 - r2: wording revision of lines 4, 8, 10 and 19; first public release.
 - r2, documentation update of 2026-10-11: the formal-verification status above was added. Only README.md and MANIFEST.json changed; the mathematics, programs, logs and reviews are unchanged.
+- r2, documentation correction of 2026-10-14: aligned the reviewer description with REVIEW.md and made the cited theorem’s recent-preprint dependence explicit in the introduction. Only README.md and MANIFEST.json changed; the mathematics and retained review evidence are unchanged.

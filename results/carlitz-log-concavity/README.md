@@ -1,6 +1,6 @@
 # A failure of log-concavity for Carlitz composition lengths
 
-Contribution PRT-CAR-001, revision r2 (formal-verification revision), first released 2026-10-11 as r1.
+Contribution PRT-CAR-001, revision r2 (formal-verification revision), publicly released 2026-10-14; first released 2026-10-11 as r1.
 
 **Proof status:** unreviewed draft.
 **Result status:** new claim not cleared.
@@ -24,6 +24,10 @@ Global least size is not claimed. Unimodality, which is weaker than log-concavit
 | --- | --- |
 | Endpoint formulas A, B, C and the infinite family m ≥ 104 | Written proof with an exact finite certificate; unreviewed by humans; prior-art status undetermined (new claim not cleared). |
 | Definitions, last-part recurrence, generating function | Known (Knopfmacher and Prodinger 1998). |
+
+## Review provenance
+
+REVIEW.md preserves the two written-proof reviews of r1. Its statement about files being byte-identical to the reviewed delivery applies to the r1 source material; FORMAL/ was added in r2 and has its own verification and correspondence records. Later documentation corrections are listed below and do not extend either review’s scope.
 
 ## Files
 
@@ -67,4 +71,5 @@ No licence is granted. See RIGHTS.md.
 
 - r1: first public release.
 - r1, documentation update of 2026-10-11: a formal-verification status line was added (then: none, pending). Only README.md and MANIFEST.json changed.
-- r2, 2026-10-11: added FORMAL/ (Lean source revision RQ4-lean-r2, verifier receipt and replay, coverage, correspondence review) and updated this README. PROOF.md is unchanged from r1; its closing sentence that no proof-assistant compilation is supplied describes the note as written for r1.
+- r2, publicly released 2026-10-14: added FORMAL/ (Lean source revision RQ4-lean-r2, verifier receipt and replay, coverage, correspondence review) and updated this README. PROOF.md is unchanged from r1; its closing sentence that no proof-assistant compilation is supplied describes the note as written for r1.
+- r2, documentation correction of 2026-10-14: corrected the public release date (previously shown as 2026-10-11) and clarified the r1 review inventory. Only README.md, FORMAL/CORRESPONDENCE.md and MANIFEST.json changed; the mathematical claim, proof, programs and formal sources are unchanged, and the prior correspondence is preserved as labelled history.

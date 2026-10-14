@@ -14,8 +14,8 @@
   },
   {
    "path": "FORMAL/CORRESPONDENCE.md",
-   "bytes": 5546,
-   "sha256": "96ca13073a253cf866f47997bbf54b46b9cc17e447e7420468445114a15279d0"
+   "bytes": 13928,
+   "sha256": "2697634a84b20de62a68d9545adfe793847b697fe0897f94a949e2c1c62c6b74"
   },
   {
    "path": "FORMAL/CarlitzCore.lean",
@@ -224,8 +224,8 @@
   },
   {
    "path": "README.md",
-   "bytes": 5289,
-   "sha256": "46f2f5b6caa720e500fa446e2b8995c886bfdae14a3c9daef5fe01da2a24fce0"
+   "bytes": 6054,
+   "sha256": "1debc0634015479c859a1ed133d02b4a3690b1a01f5165459d2036bb62601030"
   },
   {
    "path": "RERUN.json",
