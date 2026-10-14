@@ -1,0 +1,20 @@
+'carlitz_logconcavity_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'carlitz_A' depends on axioms: [propext, Classical.choice, Quot.sound]
+'carlitz_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+'carlitz_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+'carlitz_n314' depends on axioms: [propext, Classical.choice, Quot.sound]
+carlitz_logconcavity_fails : ∀ (m : Nat),
+  104 ≤ m →
+    carlitz (3 * m + 2) (2 * m) * carlitz (3 * m + 2) (2 * m) <
+      carlitz (3 * m + 2) (2 * m - 1) * carlitz (3 * m + 2) (2 * m + 1)
+carlitz_A : ∀ (m : Nat), 2 ≤ m → carlitz (3 * m + 2) (2 * m + 1) = m + 1
+carlitz_B : ∀ (m : Nat), 2 ≤ m → carlitz (3 * m + 2) (2 * m) = m * (3 * m + 1)
+carlitz_C : ∀ (m : Nat),
+  2 ≤ m → 24 * carlitz (3 * m + 2) (2 * m - 1) + 277 * m ^ 2 + 312 = m ^ 4 + 114 * m ^ 3 + 426 * m
+carlitz_n314 : carlitz 314 207 = 10094513 ∧ carlitz 314 208 = 32552 ∧ carlitz 314 209 = 105
+def carlitz : Nat → Nat → Nat :=
+fun n k => (List.filter adjDistinct (comps k n)).length
+def comps : Nat → Nat → List (List Nat) :=
+fun x x_1 => Nat.brecOn (motive := fun x => Nat → List (List Nat)) x comps._f x_1
+def adjDistinct : List Nat → Bool :=
+fun x => List.brecOn x adjDistinct._f

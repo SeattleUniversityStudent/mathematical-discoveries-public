@@ -1,0 +1,27 @@
+CarlitzSpec exit 0 peakRSS_KB 532792
+  seconds 1
+CarlitzCore exit 0 peakRSS_KB 541840
+  seconds 1
+CarlitzStates exit 0 peakRSS_KB 525048
+  seconds 1
+CarlitzSteps0 exit 0 peakRSS_KB 541000
+  seconds 1
+CarlitzSteps1 exit 0 peakRSS_KB 550760
+  seconds 2
+CarlitzSteps2 exit 0 peakRSS_KB 555892
+  seconds 1
+CarlitzSteps3 exit 0 peakRSS_KB 568888
+  seconds 3
+CarlitzSteps4 exit 0 peakRSS_KB 553680
+  seconds 1
+CarlitzSteps5 exit 0 peakRSS_KB 552452
+  seconds 2
+CarlitzSteps6 exit 0 peakRSS_KB 571272
+  seconds 2
+CarlitzSteps7 exit 0 peakRSS_KB 547236
+  seconds 2
+CarlitzSteps exit 0 peakRSS_KB 519456
+  seconds 0
+CarlitzMain exit 0 peakRSS_KB 555048
+  seconds 1
+BUILD OK

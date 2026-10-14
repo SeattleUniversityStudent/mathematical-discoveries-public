@@ -1,0 +1,6 @@
+closure_size 662 header_modules 662
+packet modules: 13 ['CarlitzCore', 'CarlitzMain', 'CarlitzSpec', 'CarlitzStates', 'CarlitzSteps', 'CarlitzSteps0', 'CarlitzSteps1', 'CarlitzSteps2', 'CarlitzSteps3', 'CarlitzSteps4', 'CarlitzSteps5', 'CarlitzSteps6', 'CarlitzSteps7']
+toolchain modules: 649 by top-level namespace: {'Init': 649}
+any Std/Lean/Lake/Mathlib module in closure: False
+toolchain dependency files hashed (.olean plus existing .olean.server/.olean.private parts): 1947
+sha256 of that manifest (paths relative to toolchain root): b91f4bb73f12e4a4403ee3e4d843b3e2a710f1b0a447b2f767f71a7ff6897ec9

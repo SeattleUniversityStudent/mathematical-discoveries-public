@@ -1,12 +1,12 @@
 # A failure of log-concavity for Carlitz composition lengths
 
-Contribution PRT-CAR-001, revision r1, released 2026-10-11.
+Contribution PRT-CAR-001, revision r2 (formal-verification revision), first released 2026-10-11 as r1.
 
 **Proof status:** unreviewed draft.
 **Result status:** new claim not cleared.
-**Formal verification:** none. No Lean or other proof-assistant check has been run on this result. Formal verification is pending; this is an AI-reviewed draft, not part of a formally verified collection.
+**Formal verification:** Lean kernel-checked (core Lean 4.34.0) for the five statements listed in FORMAL/coverage.json: the main inequality for every m ≥ 104, the closed forms A, B and C for m ≥ 2, and the three values at n = 314. The check covers those statements only. The Lean proof follows a different route from PROOF.md, and the Python programs and certificates are not formally checked.
 
-This work is AI-assisted: AI systems produced the argument, the programs and the runs described below. Two AI reviewers, from two different vendors, checked it (see REVIEW.md). No human has reviewed or endorsed it. No proof assistant was used. No claim of priority is made.
+This work is AI-assisted: AI systems produced the argument, the programs, the Lean formalization and the runs described below. Two AI reviewers, from two different vendors, checked the written proof (see REVIEW.md). A separate AI verifier built and replayed the Lean formalization, and a separate AI reviewer checked that its statements match this page (see FORMAL/). No human has reviewed or endorsed it. No claim of priority is made.
 
 ## Statement
 
@@ -35,6 +35,7 @@ Global least size is not claimed. Unimodality, which is weaker than log-concavit
 | certify.py, certificate_verification.json, certificate.log | Exact check of all state and projection identities and of the closed forms |
 | reference_coefficients.json | Frozen auxiliary table of a(n,k), n ≤ 150 |
 | RERUN.json | Commands that produce each log |
+| FORMAL/ | Lean sources, verifier receipt and logs, statement coverage and the correspondence review |
 | EXECUTION.json | Record of the reruns made when this release was prepared |
 | REVIEW.md | Record of the two AI reviews |
 | review/reviewer-1/, review/reviewer-2/ | Each reviewer's own check programs and outputs |
@@ -49,12 +50,12 @@ All three supplied commands in RERUN.json were rerun when this release was prepa
 
 ## Observations from review (not part of the claim)
 
-- One reviewer found a second failing family by exhaustive computation: (n, k) = (3m+1, 2m) for every m ≥ 52, first at n = 157 (triple 42709, 206, 1), and n = 157 is the smallest failing row for n ≤ 320. The result above is therefore not the first failure; PROOF.md does not claim it is.
+- One reviewer's exhaustive computation for n ≤ 320 found failures at (n, k) = (3m+1, 2m) for every m with 52 ≤ m ≤ 106, the first at n = 157 (triple 42709, 206, 1); n = 157 is the smallest failing row for n ≤ 320. No general proof of this family is given here, and it is not part of the formally checked statements. The result above is therefore not the first failure; PROOF.md does not claim it is.
 - Bender and Canfield, *Locally Restricted Compositions I*, Electron. J. Combin. 12 (2005) R57, DOI 10.37236/1954, prints r ≈ 0.78397 in Example 2 (p. 3) as the radius of convergence for Carlitz compositions. Both reviewers' exact computations, and the same paper's later table, give 0.5713497932, in agreement with Knopfmacher and Prodinger. This background value is not used in the proof.
 
 ## Limitations
 
-- No human review and no formal proof-assistant check.
+- No human review. The formal check covers only the five statements in FORMAL/coverage.json, not the computations or the observations above.
 - Prior-art search was bounded (web, OEIS, the cited papers); MathSciNet and zbMATH were not searched. Search absence is not clearance.
 - The reference table is an auxiliary finite check only; the proof does not depend on it.
 
@@ -65,4 +66,5 @@ No licence is granted. See RIGHTS.md.
 ## Revision history
 
 - r1: first public release.
-- r1, documentation update of 2026-10-11: the formal-verification status above was added. Only README.md and MANIFEST.json changed; the mathematics, programs, logs and reviews are unchanged.
+- r1, documentation update of 2026-10-11: a formal-verification status line was added (then: none, pending). Only README.md and MANIFEST.json changed.
+- r2, 2026-10-11: added FORMAL/ (Lean source revision RQ4-lean-r2, verifier receipt and replay, coverage, correspondence review) and updated this README. PROOF.md is unchanged from r1; its closing sentence that no proof-assistant compilation is supplied describes the note as written for r1.

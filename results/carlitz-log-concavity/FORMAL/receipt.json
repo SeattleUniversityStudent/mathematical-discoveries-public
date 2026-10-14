@@ -1,0 +1,271 @@
+{
+ "schema": "pub-preflight receipt v3",
+ "result": "PRT-CAR-001",
+ "package_revision": "r2",
+ "lean_source_revision": "RQ4-lean-r2",
+ "lean_source_archive_sha256": "2bb7171400588f7bb1bc1b43e3d1db53ccb7ac00829e341f06f4bcce1d142c30",
+ "proof_md_sha256": "c867b6f57e4aba4e7da4cacc50e2e12dc6e8f58c79ee9c4f5436482d78985940",
+ "producer_id": "result-producer-1",
+ "formalization_author_id": "formalization-author-1",
+ "verifier_id": "formal-verifier-1",
+ "verifier_job_id": "formal-verification-job-V2",
+ "identity_note": "Role labels of separate AI agents; no human reviewed or endorsed this result.",
+ "lean_sources": [
+  {
+   "path": "Axioms.lean",
+   "sha256": "9757072ff671f32fc6b1464092aec2accb08423d545b241c3b34c56b6adc7ca0"
+  },
+  {
+   "path": "CarlitzCore.lean",
+   "sha256": "6b70d2eb6b8937422f8ed2e0f01bdf0e33b9d5104fd482a0355655ef3ef978f9"
+  },
+  {
+   "path": "CarlitzMain.lean",
+   "sha256": "bcfb5dc766c45650c5ef606caef04324866075d415dd833a7bb9b9a9b51cf515"
+  },
+  {
+   "path": "CarlitzSpec.lean",
+   "sha256": "14982fdae98a90404674b5ac0685212384c399535d2a9001c60d98339bb08269"
+  },
+  {
+   "path": "CarlitzStates.lean",
+   "sha256": "b5084909c85c15bd506a4ed77d7617bc9aff49e16bd008421828388869e109d8"
+  },
+  {
+   "path": "CarlitzSteps.lean",
+   "sha256": "f31191a8fb3bcc9972efe48908e3ba05acc4fd9c7d5e72a9152eacff4df503a6"
+  },
+  {
+   "path": "CarlitzSteps0.lean",
+   "sha256": "ada12d876770c016d11a1badc701f067bc317297f0c580bc6333aff32b2c9448"
+  },
+  {
+   "path": "CarlitzSteps1.lean",
+   "sha256": "d234fb478de2e9b1e36172d36f7157157646188eeee9c70246b522e8b21955cc"
+  },
+  {
+   "path": "CarlitzSteps2.lean",
+   "sha256": "1f9cdcd7e17b2afb166f670a4679be88dae505f176c0356d22297a2fc1fab0dc"
+  },
+  {
+   "path": "CarlitzSteps3.lean",
+   "sha256": "bc4531482d01055879de962e825658aed6df3c7c2550e1de33573b296b5470db"
+  },
+  {
+   "path": "CarlitzSteps4.lean",
+   "sha256": "66d6433812b5e0f1c579074d8588f1f94619f864e559f7570785c7e9f85b131a"
+  },
+  {
+   "path": "CarlitzSteps5.lean",
+   "sha256": "36472cde9af55a5841b48e5fefc865e1f624a35c3b51c73d5c76e3ae110ca26a"
+  },
+  {
+   "path": "CarlitzSteps6.lean",
+   "sha256": "4f476b4b43d95edb3ac76587a1a8d16190e39323db86b253b3121f4626b3bcb3"
+  },
+  {
+   "path": "CarlitzSteps7.lean",
+   "sha256": "c2157407528ddd98ccf04fc4f3857fdfff6d7ac45e7523c54bccb5397d75c0af"
+  }
+ ],
+ "lean_toolchain": "leanprover/lean4:v4.34.0 (official release, commit 293d5d0c0c3f3dded4688b3ccd6a33939ac5102b)",
+ "dependencies": {
+  "lean_core": "Init only (649 modules; see verification/dependency_closure_summary.txt)",
+  "std": "not used",
+  "lake": "not used",
+  "mathlib": "not used"
+ },
+ "lake_manifest_sha256": null,
+ "build": {
+  "command": "env PATH=<toolchain>/bin:$PATH timeout 115 bash build.sh",
+  "exit_code": 0,
+  "log": "verification/build_stdout.txt",
+  "log_sha256": "93e164e165fc98ee3599091612a678918b0830b9bab4fb8a6c8d566cd3b4356e",
+  "environment": "fresh extraction of the source archive; x86-64 Linux; official Lean 4.34.0 binary; per-module logs in verification/build_logs/",
+  "axiom_report": {
+   "command": "env PATH=<toolchain>/bin:$PATH LEAN_PATH=build timeout 110 lean Axioms.lean",
+   "exit_code": 0,
+   "output": "verification/axioms_stdout.txt",
+   "output_sha256": "ec001ee8bceaadd6c87dc870b95418d8b2bf78197f28d6808b8f3852921a3407"
+  }
+ },
+ "rebuild": {
+  "description": "second, separately extracted compilation with explicit per-module lean -o commands; outputs byte-identical to the first build; same toolchain (not an independent checker)",
+  "exit_code": 0
+ },
+ "replay": {
+  "command": "env PATH=<toolchain>/bin:$PATH LEAN_PATH=buildB timeout 115 leanchecker -v --fresh CarlitzMain",
+  "exit_code": 0,
+  "log": "verification/replay_fresh_stdout.txt",
+  "log_sha256": "1c0fe2c6c5108fe7b3c22cee90ff1f2f739266b1a066bb4217de6132b495469c",
+  "environment": "leanchecker from the same official Lean 4.34.0 archive, replaying the second build's stored declarations; --fresh re-checks the whole 662-module closure from an empty environment. Same kernel implementation: not an external checker.",
+  "separate_from_build": true,
+  "source_hashes": [
+   "9757072ff671f32fc6b1464092aec2accb08423d545b241c3b34c56b6adc7ca0",
+   "6b70d2eb6b8937422f8ed2e0f01bdf0e33b9d5104fd482a0355655ef3ef978f9",
+   "bcfb5dc766c45650c5ef606caef04324866075d415dd833a7bb9b9a9b51cf515",
+   "14982fdae98a90404674b5ac0685212384c399535d2a9001c60d98339bb08269",
+   "b5084909c85c15bd506a4ed77d7617bc9aff49e16bd008421828388869e109d8",
+   "f31191a8fb3bcc9972efe48908e3ba05acc4fd9c7d5e72a9152eacff4df503a6",
+   "ada12d876770c016d11a1badc701f067bc317297f0c580bc6333aff32b2c9448",
+   "d234fb478de2e9b1e36172d36f7157157646188eeee9c70246b522e8b21955cc",
+   "1f9cdcd7e17b2afb166f670a4679be88dae505f176c0356d22297a2fc1fab0dc",
+   "bc4531482d01055879de962e825658aed6df3c7c2550e1de33573b296b5470db",
+   "66d6433812b5e0f1c579074d8588f1f94619f864e559f7570785c7e9f85b131a",
+   "36472cde9af55a5841b48e5fefc865e1f624a35c3b51c73d5c76e3ae110ca26a",
+   "4f476b4b43d95edb3ac76587a1a8d16190e39323db86b253b3121f4626b3bcb3",
+   "c2157407528ddd98ccf04fc4f3857fdfff6d7ac45e7523c54bccb5397d75c0af"
+  ],
+  "module_replay": {
+   "command": "env PATH=<toolchain>/bin:$PATH LEAN_PATH=buildB timeout 115 leanchecker -v CarlitzSpec CarlitzCore CarlitzStates CarlitzSteps0 CarlitzSteps1 CarlitzSteps2 CarlitzSteps3 CarlitzSteps4 CarlitzSteps5 CarlitzSteps6 CarlitzSteps7 CarlitzSteps CarlitzMain",
+   "exit_code": 0,
+   "log": "verification/replay_modules_stdout.txt",
+   "log_sha256": "51ec44e7008ea5a770fa0f28d29757f3f8ccb203f5161ee945791ed2de580b36"
+  }
+ },
+ "theorems": [
+  {
+   "name": "carlitz_logconcavity_fails",
+   "signature": "carlitz_logconcavity_fails : ∀ (m : Nat),\n  104 ≤ m →\n    carlitz (3 * m + 2) (2 * m) * carlitz (3 * m + 2) (2 * m) <\n      carlitz (3 * m + 2) (2 * m - 1) * carlitz (3 * m + 2) (2 * m + 1)",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "carlitz_A",
+   "signature": "carlitz_A : ∀ (m : Nat), 2 ≤ m → carlitz (3 * m + 2) (2 * m + 1) = m + 1",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "carlitz_B",
+   "signature": "carlitz_B : ∀ (m : Nat), 2 ≤ m → carlitz (3 * m + 2) (2 * m) = m * (3 * m + 1)",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "carlitz_C",
+   "signature": "carlitz_C : ∀ (m : Nat),\n  2 ≤ m → 24 * carlitz (3 * m + 2) (2 * m - 1) + 277 * m ^ 2 + 312 = m ^ 4 + 114 * m ^ 3 + 426 * m",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  },
+  {
+   "name": "carlitz_n314",
+   "signature": "carlitz_n314 : carlitz 314 207 = 10094513 ∧ carlitz 314 208 = 32552 ∧ carlitz 314 209 = 105",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  }
+ ],
+ "compiler_messages": "68 warnings, all 'This simp argument is unused'; no errors; no sorry",
+ "verifier_evidence": {
+  "bundle_sha256": "4b0367c065092e8a5f85dd06ba3596f39363fe543db875d51d202fe9b6c251cb",
+  "bundle_manifest_sha256": "61555d72a7bbd9f87f521f66e30b47346871a52a7841426d92c84be1b0558b40",
+  "published_files": [
+   {
+    "published_path": "verification/build_logs/CarlitzCore.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzCore.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzMain.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzMain.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSpec.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSpec.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzStates.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzStates.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps0.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps0.log",
+    "sha256": "fcac813181f0a1ae3acfac5ed0b2d6764a1d1ce97050802af81f63e6dbfff3cb"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps1.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps1.log",
+    "sha256": "aadff64d195a04440f6e7ed39ed4a1aa9999e3e65998b5c5ff5a5c73fbd47e0d"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps2.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps2.log",
+    "sha256": "210ef4feb0ee184cff7dc834ee69f34405eb358513a030505104535b70d84af1"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps3.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps3.log",
+    "sha256": "e458904eeff557ab6a176b26489549ca60ec7411edd135ca03cd71d128dbbfda"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps4.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps4.log",
+    "sha256": "1aa163781cb765357565c4f19f02d13fa00de585915ea4f1ed6e647bfed6c075"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps5.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps5.log",
+    "sha256": "8b00ccdefb729f8de2429098ce6a54c4f986ce156f364be309517ae892d8dc1e"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps6.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps6.log",
+    "sha256": "61e8845df35dc08a9fa7b67d48b6fc5e39db91e8aab768fc4baf94a1b2ff3ea9"
+   },
+   {
+    "published_path": "verification/build_logs/CarlitzSteps7.log",
+    "verifier_bundle_member": "V2-A_logs/CarlitzSteps7.log",
+    "sha256": "32712521020feb9a1901a572b0f2e4d5b6cb0ccb670ba92ee0f3e4001d30ffca"
+   },
+   {
+    "published_path": "verification/build_stdout.txt",
+    "verifier_bundle_member": "evidence/22_V2A_build_stdout.txt",
+    "sha256": "93e164e165fc98ee3599091612a678918b0830b9bab4fb8a6c8d566cd3b4356e"
+   },
+   {
+    "published_path": "verification/axioms_stdout.txt",
+    "verifier_bundle_member": "evidence/24_V2A_axioms_stdout.txt",
+    "sha256": "ec001ee8bceaadd6c87dc870b95418d8b2bf78197f28d6808b8f3852921a3407"
+   },
+   {
+    "published_path": "verification/replay_modules_stdout.txt",
+    "verifier_bundle_member": "evidence/40_V2C_replay_modules_stdout.txt",
+    "sha256": "51ec44e7008ea5a770fa0f28d29757f3f8ccb203f5161ee945791ed2de580b36"
+   },
+   {
+    "published_path": "verification/replay_fresh_stdout.txt",
+    "verifier_bundle_member": "evidence/41_V2C_replay_fresh_stdout.txt",
+    "sha256": "1c0fe2c6c5108fe7b3c22cee90ff1f2f739266b1a066bb4217de6132b495469c"
+   },
+   {
+    "published_path": "verification/dependency_closure_summary.txt",
+    "verifier_bundle_member": "evidence/52_deps_summary.txt",
+    "sha256": "5ec1a53bf142ecdf0a78e3dc606db97cc09a80d19454dc85335f3d167764cc5e"
+   }
+  ],
+  "completed_utc": "2026-10-11T08:35:00Z"
+ }
+}
